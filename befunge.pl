@@ -10,7 +10,6 @@ use bigint;
 use English qw(-no_match_vars);
 use Carp qw(croak);
 use File::Basename 'basename';    #for getting basename of the program path
-use Data::Dumper;
 
 our $MAX_LINE_COUNT        ;
 our $MAX_LINE_LENGTH       ;
@@ -53,52 +52,48 @@ our $DIGIT_8               ;
 our $DIGIT_9               ;
 our $GREATER_THAN          ;
 
-#use constant {
-    *MAX_LINE_COUNT         = \80,
-    *MAX_LINE_LENGTH        = \25,
+*MAX_LINE_COUNT         = \80,
+*MAX_LINE_LENGTH        = \25,
 
-    *NO_OPERATION           = \32,
-    *PLUS                   = \43,
-    *MINUS                  = \45,
-    *MULTIPLY               = \42,
-    *INT_DIVISION           = \47,
-    *MOD_DIVISION           = \37,
-    *NOT                    = \33,
-    *MOVE_RIGHT             = \62,
-    *MOVE_LEFT              = \60,
-    *MOVE_UP                = \94,
-    *MOVE_DOWN              = \118,
-    *RAND                   = \63,
-    *MOVE_RIGHT_OR_LEFT     = \95,
-    *MOVE_DOWN_OR_UP        = \124,
-    *STRING_MODE            = \34,
-    *DUPLICATE_VALUE        = \58,
-    *SWAP_VALUES            = \92,
-    *POP                    = \36,
-    *POP_AND_OUTPUT_INTEGER = \46,
-    *POP_AND_ASCII_OUTPUT   = \44,
-    *TRAMPOLINE             = \35,
-    *PUT_CALL               = \112,
-    *GET_CALL               = \103,
-    *USER_INPUT_INTEGER     = \38,
-    *USER_INPUT_CHARACTER   = \126,
-    *PROGRAM_END            = \64,
-    *DIGIT_0                = \48,
-    *DIGIT_1                = \49,
-    *DIGIT_2                = \50,
-    *DIGIT_3                = \51,
-    *DIGIT_4                = \52,
-    *DIGIT_5                = \53,
-    *DIGIT_6                = \54,
-    *DIGIT_7                = \55,
-    *DIGIT_8                = \56,
-    *DIGIT_9                = \57,
-    *GREATER_THAN           = \96;
-#};
+*NO_OPERATION           = \32,
+*PLUS                   = \43,
+*MINUS                  = \45,
+*MULTIPLY               = \42,
+*INT_DIVISION           = \47,
+*MOD_DIVISION           = \37,
+*NOT                    = \33,
+*MOVE_RIGHT             = \62,
+*MOVE_LEFT              = \60,
+*MOVE_UP                = \94,
+*MOVE_DOWN              = \118,
+*RAND                   = \63,
+*MOVE_RIGHT_OR_LEFT     = \95,
+*MOVE_DOWN_OR_UP        = \124,
+*STRING_MODE            = \34,
+*DUPLICATE_VALUE        = \58,
+*SWAP_VALUES            = \92,
+*POP                    = \36,
+*POP_AND_OUTPUT_INTEGER = \46,
+*POP_AND_ASCII_OUTPUT   = \44,
+*TRAMPOLINE             = \35,
+*PUT_CALL               = \112,
+*GET_CALL               = \103,
+*USER_INPUT_INTEGER     = \38,
+*USER_INPUT_CHARACTER   = \126,
+*PROGRAM_END            = \64,
+*DIGIT_0                = \48,
+*DIGIT_1                = \49,
+*DIGIT_2                = \50,
+*DIGIT_3                = \51,
+*DIGIT_4                = \52,
+*DIGIT_5                = \53,
+*DIGIT_6                = \54,
+*DIGIT_7                = \55,
+*DIGIT_8                = \56,
+*DIGIT_9                = \57,
+*GREATER_THAN           = \96;
 
 our $VERSION = 1;
-
-use bigint;
 
 if (@ARGV != 1) {
     croak "usage: @{[basename($PROGRAM_NAME)]} program.bf";
@@ -130,8 +125,6 @@ while (my $line = <$fh>) {
 
 close $fh;
 
-#say Dumper(@code);
-#exit 0;
 $OUTPUT_AUTOFLUSH = 1;
 
 #interpret it, luke!
@@ -150,7 +143,6 @@ while (1) {
             ++$stack_length;
         } else {
 
-            #blabla
             if ($op == $NO_OPERATION) {
                 #do nothing
             } elsif ($op >= $DIGIT_0 && $op <= $DIGIT_9) {
@@ -376,7 +368,6 @@ while (1) {
              } elsif ($op == $PROGRAM_END) {
                 last;
             }
-            #blabla
         }
     }
 
