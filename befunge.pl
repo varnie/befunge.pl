@@ -5,7 +5,6 @@
 use strict;
 use warnings;
 use 5.010;
-use bigint;
 
 use English qw(-no_match_vars);
 use Carp qw(croak);
