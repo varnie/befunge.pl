@@ -11,46 +11,46 @@ use English qw(-no_match_vars);
 use Carp qw(croak);
 use File::Basename 'basename';    #for getting basename of the program path
 
-our $MAX_LINE_COUNT        ;
-our $MAX_LINE_LENGTH       ;
+our $MAX_LINE_COUNT;
+our $MAX_LINE_LENGTH;
 
-our $NO_OPERATION          ;
-our $PLUS                  ;
-our $MINUS                 ;
-our $MULTIPLY              ;
-our $INT_DIVISION          ;
-our $MOD_DIVISION          ;
-our $NOT                   ;
-our $MOVE_RIGHT            ;
-our $MOVE_LEFT             ;
-our $MOVE_UP               ;
-our $MOVE_DOWN             ;
-our $RAND                  ;
-our $MOVE_RIGHT_OR_LEFT    ;
-our $MOVE_DOWN_OR_UP       ;
-our $STRING_MODE           ;
-our $DUPLICATE_VALUE       ;
-our $SWAP_VALUES           ;
-our $POP                   ;
+our $NO_OPERATION;
+our $PLUS;
+our $MINUS;
+our $MULTIPLY;
+our $INT_DIVISION;
+our $MOD_DIVISION;
+our $NOT;
+our $MOVE_RIGHT;
+our $MOVE_LEFT;
+our $MOVE_UP;
+our $MOVE_DOWN;
+our $RAND;
+our $MOVE_RIGHT_OR_LEFT;
+our $MOVE_DOWN_OR_UP;
+our $STRING_MODE;
+our $DUPLICATE_VALUE;
+our $SWAP_VALUES;
+our $POP;
 our $POP_AND_OUTPUT_INTEGER;
-our $POP_AND_ASCII_OUTPUT  ;
-our $TRAMPOLINE            ;
-our $PUT_CALL              ;
-our $GET_CALL              ;
-our $USER_INPUT_INTEGER    ;
-our $USER_INPUT_CHARACTER  ;
-our $PROGRAM_END           ;
-our $DIGIT_0               ;
-our $DIGIT_1               ;
-our $DIGIT_2               ;
-our $DIGIT_3               ;
-our $DIGIT_4               ;
-our $DIGIT_5               ;
-our $DIGIT_6               ;
-our $DIGIT_7               ;
-our $DIGIT_8               ;
-our $DIGIT_9               ;
-our $GREATER_THAN          ;
+our $POP_AND_ASCII_OUTPUT;
+our $TRAMPOLINE;
+our $PUT_CALL;
+our $GET_CALL;
+our $USER_INPUT_INTEGER;
+our $USER_INPUT_CHARACTER;
+our $PROGRAM_END;
+our $DIGIT_0;
+our $DIGIT_1;
+our $DIGIT_2;
+our $DIGIT_3;
+our $DIGIT_4;
+our $DIGIT_5;
+our $DIGIT_6;
+our $DIGIT_7;
+our $DIGIT_8;
+our $DIGIT_9;
+our $GREATER_THAN;
 
 *MAX_LINE_COUNT         = \80,
 *MAX_LINE_LENGTH        = \25,
@@ -103,8 +103,7 @@ my $filename = $ARGV[0];
 open my $fh, '<', $filename
   or croak "failed to open source file $filename: $OS_ERROR";
 
-my @code;
-my $code_lines;
+my (@code, $code_lines);
 
 #parsing
 while (my $line = <$fh>) {
@@ -119,7 +118,7 @@ while (my $line = <$fh>) {
         push @code, ($NO_OPERATION) x ($MAX_LINE_LENGTH - @chars);
     }
 
-    $code_lines++;
+    ++$code_lines;
     last if $INPUT_LINE_NUMBER > $MAX_LINE_COUNT - 1;
 }
 
@@ -227,7 +226,7 @@ while (1) {
                     --$stack_length;
                     $direction = $v1 == 0 ? $MOVE_DOWN : $MOVE_UP;
                 } else {
-                    $direction = $$MOVE_DOWN;
+                    $direction = $MOVE_DOWN;
                 }
             } elsif ($op == $POP_AND_OUTPUT_INTEGER) {
                 if ($stack_length > 0) {
